@@ -13,29 +13,30 @@
         }
     </style>
 </head>
-<body>
-
-<div>
+<body class="container">
+<div class="row">
     @section('navbar')
         @include('components.navbar')
     @show
 </div>
-
 <div class="row">
-    <div class="col">
+    <div class="col-10">
         @section('content')
             @include('components.content')
         @show
     </div>
-    <div class="col-3">
+    <div class="col-2">
         @section('right-bar')
             @include('components.right-bar')
         @show
     </div>
 </div>
-<div>
-    @section('footer')
-    @show
+<div class="row">
+    <div class="col-10">
+        @section('footer')
+            @include('components.footer')
+        @show
+    </div>
 </div>
 @include('partials.js')
 

@@ -20,6 +20,5 @@ Route::view('/admin', 'admin')
     ->middleware(['web', 'auth', 'role:admin|writer'])
     ->name('admin');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::view('/pages', 'index')
+    ->name('pages');

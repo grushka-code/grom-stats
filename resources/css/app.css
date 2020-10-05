@@ -1,3 +1,49 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+.padding-1px {
+    padding: 1px
+}
+
+.nounderline a:hover{
+    text-decoration: none;
+}
+.l-padding-20{
+    padding-left: 20px;
+}
+.l-margin--20{
+    margin-left: -20px;
+}
+.btn-navbar {
+    color: #fff;
+    background-color: #5b9bd5;
+    border-color: #43729d;
+    border-radius: 0;
+    height: 100%;
+    padding: 0;
+}
+
+.btn-navbar:hover {
+    color: #fff;
+    background-color: #ed7d31;
+    border-color: #117a8b
+}
+
+
+.btn-navbar.focus, .btn-navbar:focus {
+    box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .5)
+}
+
+.btn-navbar.disabled, .btn-navbar:disabled {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8
+}
+
+.btn-navbar:not(:disabled):not(.disabled).active, .btn-navbar:not(:disabled):not(.disabled):active, .show > .btn-navbar.dropdown-toggle {
+    color: #fff;
+    background-color: #ed7d31;
+    border-color: #10707f
+}
+
+.btn-navbar:not(:disabled):not(.disabled).active:focus, .btn-navbar:not(:disabled):not(.disabled):active:focus, .show > .btn-navbar.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .5)
+}
+
