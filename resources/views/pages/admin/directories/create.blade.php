@@ -5,16 +5,16 @@
     <form method="post" action="{{route('admin.directories.store')}}">
         {{{csrf_field()}}}
         <div class="form-group">
-            <label for="name">Directory  Name</label>
-            <input type="text" class="form-control" id="name" name="name" required aria-describedby="nameHelp" placeholder="Name">
-            <small id="nameHelp" class="form-text text-muted">Directory name, max length 255</small>
+            <label for="title">Directory  title</label>
+            <input type="text" class="form-control" id="title" name="title" required aria-describedby="titleHelp" placeholder="title">
+            <small id="titleHelp" class="form-text text-muted">Directory title, max length 255</small>
         </div>
         <div class="form-group">
             <label for="parent">Parent Directory</label>
             <select class="form-control" id="parent" name="parent_id">
                 <option value="">--//--</option>
-                @foreach($parents as $id=>$parent)
-                    <option value="{{{$id}}}">{{{$parent}}}</option>
+                @foreach($parents as $id=>$title)
+                    <option value="{{{$id}}}">{{{$title}}}</option>
                 @endforeach
             </select>
         </div>

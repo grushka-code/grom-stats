@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\DirectoryRequest;
 use App\Models\Directory;
 use Illuminate\View\View;
@@ -29,7 +30,7 @@ class DirectoriesController extends Controller
      */
     public function create()
     {
-        return view("{$this->viewsPath}.create", ['parents' => Directory::all()->pluck('name', 'id')]);
+        return view("{$this->viewsPath}.create", ['parents' => Directory::all()->pluck('title', 'id')]);
     }
 
     /**
@@ -44,7 +45,7 @@ class DirectoriesController extends Controller
         $directory->fill($request->all())
             ->save();
         return redirect()->route($this->indexRoute)
-            ->with('status', "Directory '{$directory->name}'(id:{$directory->id}) Created!");
+            ->with('status', "Directory '{$directory->title}'(id:{$directory->id}) Created!");
     }
 
     /**
@@ -57,7 +58,7 @@ class DirectoriesController extends Controller
     {
         return view("{$this->viewsPath}.edit", [
             'model'   => $directory,
-            'parents' => Directory::all()->pluck('name', 'id')
+            'parents' => Directory::all()->pluck('title', 'id')
         ]);
     }
 
@@ -74,7 +75,7 @@ class DirectoriesController extends Controller
             ->save();
 
         return redirect()->route($this->indexRoute)
-            ->with('status', "Directory '{$directory->name}' Updated!");
+            ->with('status', "Directory '{$directory->title}' Updated!");
     }
 
     /**
@@ -89,7 +90,7 @@ class DirectoriesController extends Controller
         if ($directory->pages->isEmpty() && $directory->childs->isEmpty()) {
             $directory->delete();
             return redirect()->route($this->indexRoute)
-                ->with('status', "Directory '{$directory->name}' deleted!");
+                ->with('status', "Directory '{$directory->title}' deleted!");
         }
         return redirect()->route($this->indexRoute)
             ->with('error', 'Cant delete directory with child`s elements');

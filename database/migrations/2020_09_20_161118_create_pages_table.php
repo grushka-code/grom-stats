@@ -21,6 +21,7 @@ class CreatePagesTable extends Migration
             $table->text('text');
             $table->integer('author_id');
             $table->tinyInteger('status')->default(Page::STATUS_CREATED);
+            $table->tinyInteger('type')->default(Page::TYPE_PAGE);
             $table->timestamps();
         });
     }

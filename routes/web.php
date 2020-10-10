@@ -20,5 +20,12 @@ Route::view('/admin', 'admin')
     ->middleware(['web', 'auth', 'role:admin|writer'])
     ->name('admin');
 
-Route::view('/pages', 'index')
+Route::view('/pages', 'pages.pages')
     ->name('pages');
+
+Auth::routes([
+    'register' => false,
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false,
+]);

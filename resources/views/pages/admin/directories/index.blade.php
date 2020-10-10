@@ -12,7 +12,7 @@
         <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Name</th>
+            <th scope="col">Title</th>
             <th scope="col">Child's</th>
             <th scope="col">Visible</th>
             <th scope="col">Actions</th>
@@ -22,10 +22,10 @@
         @foreach($models as $model)
             <tr>
                 <td>{{{$model->id}}}</td>
-                <td>{{{$model->name}}}</td>
+                <td>{{{$model->title}}}</td>
                 <td>
                     @if($model->childs->isNotEmpty())
-                        {{{ implode(', ',$model->childs->pluck('name')->toArray()) }}}
+                        {{{ implode(', ',$model->childs->pluck('title')->toArray()) }}}
                     @else
                         --//--
                     @endif

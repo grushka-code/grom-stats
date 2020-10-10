@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -19,6 +20,7 @@ use Illuminate\Support\Str;
  * @property User $author
  * @property Directory $directory
  * @property integer $status
+ * @property integer $type
  */
 class Page extends Model
 {
@@ -28,6 +30,10 @@ class Page extends Model
     const STATUS_ON_REVIEW = 2;
     const STATUS_APPROVED = 3;
     const STATUS_BLOCKED = 4;
+
+    const TYPE_PAGE = 1;
+    const TYPE_NEWS = 2;
+    const TYPE_ANNOUNCE = 3;
 
     private $statusLabels = [
         self::STATUS_CREATED => 'info',
@@ -43,19 +49,30 @@ class Page extends Model
         self::STATUS_BLOCKED => 'Blocked',
     ];
 
+    public $typeTitles = [
+        self::TYPE_PAGE => 'Page',
+        self::TYPE_NEWS => 'News',
+        self::TYPE_ANNOUNCE => 'Announce',
+    ];
+
     public $fillable = [
         'title',
         'slug',
         'text',
         'directory_id',
         'author_id',
-        'status'
+        'status',
+        'type',
     ];
-
 
     public function getStatusLabelAttribute()
     {
         return $this->statusLabels[$this->status];
+    }
+
+    public function getTypeTitleAttribute()
+    {
+        return $this->typeTitles[$this->type];
     }
 
     public function getStatusTitleAttribute()

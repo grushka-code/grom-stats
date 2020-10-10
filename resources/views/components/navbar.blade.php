@@ -3,42 +3,42 @@
         <div class="padding-1px col ">
             <a href="{{{route('home')}}}">
                 <button
-                    class="btn btn-navbar btn-sm  btn-block @if(request()->routeIs('home')) active @endif">{{{__('ГОЛОВНА')}}}</button>
+                    class="btn btn-navbar btn  btn-block @if(request()->routeIs('home')) active @endif">{{{__('ГОЛОВНА')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="{{{route('pages')}}}">
-                <button class="btn btn-navbar btn-sm  btn-block @if(request()->routeIs('pages')) active @endif">{{{__('ПУБЛІКАЦІЇ')}}}</button>
+                <button class="btn btn-navbar btn  btn-block @if(request()->routeIs('pages')) active @endif">{{{__('ПУБЛІКАЦІЇ')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__('СТАТИСТИКА')}}}</button>
+                <button class="btn btn-navbar btn  btn-block" disabled>{{{__('СТАТИСТИКА')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__('ІНФОГРАФІКА')}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__('ІНФОГРАФІКА')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__('БАРОМЕТР')}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__('БАРОМЕТР')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__("ЦІЛІ СТАЛОГО")}}} <br> {{{__("РОЗВИТКУ")}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__("ЦІЛІ СТАЛОГО")}}} <br> {{{__("РОЗВИТКУ")}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__("ГРОМАДСЬКА")}}}<br>{{{__("РАДА")}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__("ГРОМАДСЬКА")}}}<br>{{{__("РАДА")}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn-sm  btn-block">{{{__('КОНТАКТИ')}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__('КОНТАКТИ')}}}</button>
             </a>
         </div>
     </div>

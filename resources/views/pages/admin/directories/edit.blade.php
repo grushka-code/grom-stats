@@ -6,18 +6,18 @@
         {{{csrf_field()}}}
         {{ method_field('PUT') }}
         <div class="form-group">
-            <label for="name">Directory Name</label>
-            <input type="text" class="form-control" id="name" name="name" required aria-describedby="nameHelp"
-                   placeholder="Name" value="{{{$model->name}}}">
-            <small id="nameHelp" class="form-text text-muted">Directory name, max length 255</small>
+            <label for="title">Directory Title</label>
+            <input type="text" class="form-control" id="title" name="title" required aria-describedby="titleHelp"
+                   placeholder="title" value="{{{$model->title}}}">
+            <small id="titleHelp" class="form-text text-muted">Directory title, max length 255</small>
         </div>
         <div class="form-group">
             <label for="parent">Parent Directory</label>
             <select class="form-control" id="parent" name="parent_id">
                 <option value="" @if($model->parent_id == null) selected @endif>--//--</option>
-                @foreach($parents as $id=>$parent)
+                @foreach($parents as $id=>$title)
                     @if($id !== $model->id)
-                        <option value="{{{$id}}}" @if($model->parent_id == $id) selected @endif>{{{$parent}}}</option>
+                        <option value="{{{$id}}}" @if($model->parent_id == $id) selected @endif>{{{$title}}}</option>
                     @endif
                 @endforeach
             </select>

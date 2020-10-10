@@ -14,7 +14,7 @@
     </style>
 </head>
 <body class="container">
-<div class="row">
+<div class="row bot-margin--20">
     @section('navbar')
         @include('components.navbar')
     @show

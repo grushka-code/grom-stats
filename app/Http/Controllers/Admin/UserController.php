@@ -1,9 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,7 +22,7 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function index()
     {
@@ -25,7 +32,7 @@ class UserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function create()
     {
@@ -36,7 +43,7 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      *
      * @param UserRequest $request
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function store(UserRequest $request)
     {
@@ -53,7 +60,7 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View|Response
      */
     public function edit(User $user)
     {
@@ -67,7 +74,7 @@ class UserController extends Controller
      *
      * @param UserRequest $request
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
     public function update(UserRequest $request, User $user)
     {
@@ -80,8 +87,8 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function destroy(User $user)
     {

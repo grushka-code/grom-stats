@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * Каждая директория может иметь 1 родителя и множество дочерних директорий и страниц в ней
@@ -12,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * Class Directory
  * @package App\Models
  * @property integer $id
- * @property string $name
+ * @property string $title
  * @property Collection $pages
  * @property Collection $childs
  * @property Directory $parent
@@ -25,13 +28,13 @@ class Directory extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'title',
         'parent_id',
-        'visible'
+        'visible',
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function pages()
     {
@@ -39,7 +42,7 @@ class Directory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
     public function parent()
     {
@@ -47,7 +50,7 @@ class Directory extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function childs()
     {

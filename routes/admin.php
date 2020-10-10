@@ -1,6 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\DirectoriesController;
+use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,17 +18,17 @@ use Illuminate\Support\Facades\Route;
 
 
 //Directories
-Route::resource('directories', \App\Http\Controllers\DirectoriesController::class)
+Route::resource('directories', DirectoriesController::class)
     ->except([
         'show',
     ]);
 
 //Pages
-Route::resource('pages', \App\Http\Controllers\PagesController::class)->except([
+Route::resource('pages', PagesController::class)->except([
     'show',
 ]);
 
 //Users
-Route::resource('users', \App\Http\Controllers\UserController::class)->except([
+Route::resource('users', UserController::class)->except([
     'show',
 ]);

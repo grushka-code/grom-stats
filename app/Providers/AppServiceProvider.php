@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Directory;
+use App\Models\DirectoryManager;
+use App\Models\Page;
+use App\Models\PageManager;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +28,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
+        $this->app->bind('DirectoryManager', function () {
+            return new DirectoryManager(Directory::query());
+        });
+        $this->app->bind('PageManager', function () {
+            return new PageManager(Page::query());
+        });
     }
 }
