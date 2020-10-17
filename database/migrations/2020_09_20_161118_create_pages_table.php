@@ -18,8 +18,9 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('text');
+            $table->longText('text');
             $table->integer('author_id');
+            $table->integer('directory_id');
             $table->tinyInteger('status')->default(Page::STATUS_CREATED);
             $table->tinyInteger('type')->default(Page::TYPE_PAGE);
             $table->timestamps();

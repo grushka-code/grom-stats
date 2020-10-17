@@ -8,12 +8,12 @@
         </div>
         <div class="padding-1px col ">
             <a href="{{{route('pages')}}}">
-                <button class="btn btn-navbar btn  btn-block @if(request()->routeIs('pages')) active @endif">{{{__('ПУБЛІКАЦІЇ')}}}</button>
+                <button class="btn btn-navbar btn  btn-block @if(request()->routeIs('page*')) active @endif">{{{__('ПУБЛІКАЦІЇ')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">
             <a href="#">
-                <button class="btn btn-navbar btn  btn-block" disabled>{{{__('СТАТИСТИКА')}}}</button>
+                <button class="btn btn-navbar btn  btn-block">{{{__('СТАТИСТИКА')}}}</button>
             </a>
         </div>
         <div class="padding-1px col ">

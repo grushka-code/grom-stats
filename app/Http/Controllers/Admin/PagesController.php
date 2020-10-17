@@ -21,6 +21,12 @@ class PagesController extends Controller
 
     private $viewsPath = 'pages.admin.pages';
     private $indexRoute = 'admin.pages.index';
+    private $model;
+
+    public function __construct()
+    {
+        $this->model = new Page();
+    }
 
     /**
      * Display a listing of the resource.
@@ -39,13 +45,16 @@ class PagesController extends Controller
      */
     public function create()
     {
-        $directories = Directory::all()->pluck('name', 'id');
+        $directories = Directory::all()->pluck('title', 'id');
         if ($directories->isEmpty()) {
             return redirect(route($this->indexRoute))
                 ->with('error', 'Before creating pages you must create a directory!');
         }
 
-        return view("{$this->viewsPath}.create", ['directories' => $directories]);
+        return view("{$this->viewsPath}.create", [
+            'directories' => $directories,
+            'types' => $this->model->getTypeTitles(),
+        ]);
     }
 
     /**
@@ -60,8 +69,8 @@ class PagesController extends Controller
             array_merge(
                 $request->all(),
                 [
-                    'slug'      => Str::slug($request->get('title'), '-'),
-                    'author_id' => 1
+                    'slug' => Str::slug($request->get('title'), '-'),
+                    'author_id' => 1,
                 ]
             ));
         $page->save();
@@ -79,8 +88,9 @@ class PagesController extends Controller
     public function edit(Page $page)
     {
         return view("{$this->viewsPath}.edit", [
-            'model'       => $page,
-            'directories' => Directory::all()->pluck('name', 'id')
+            'model' => $page,
+            'directories' => Directory::all()->pluck('title', 'id'),
+            'types' => $this->model->getTypeTitles(),
         ]);
     }
 
@@ -97,7 +107,7 @@ class PagesController extends Controller
             array_merge(
                 $request->all(),
                 [
-                    'slug'      => Str::slug($request->get('title'), '-')
+                    'slug' => Str::slug($request->get('title'), '-'),
                 ]
             ))->save();
 

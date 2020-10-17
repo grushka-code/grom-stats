@@ -6,21 +6,28 @@ use Illuminate\Database\Eloquent\Builder;
 
 class PageManager
 {
-
     /**
-     * @var
+     * @var Builder
      */
-    private $query;
+    private $pageContainer;
 
-    public function __construct(Builder $query)
+    public function __construct(Page $page)
     {
-        $this->query = $query;
+        $this->pageContainer = $page;
     }
 
-    public function getByDirectoryId($directoryId)
+    public function getPagesByDirectory($directoryId, $limit = 10)
     {
-        return $this->query->where('directory_id', '=', $directoryId)
-            ->limit(5)
+        return $this->pageContainer->where('directory_id', '=', $directoryId)
+            ->limit($limit)
+            ->pluck('title', 'slug');
+    }
+
+    public function getPagesByType($type, $limit = 5)
+    {
+        return $this->pageContainer->where('type', '=', $type)
+            ->limit($limit)
+            ->latest()
             ->pluck('title', 'slug');
     }
 }

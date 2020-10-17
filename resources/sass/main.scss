@@ -1,3 +1,6 @@
+.body{
+    color: white;
+}
 .padding-1px {
     padding: 1px
 }
@@ -11,6 +14,7 @@
 .l-margin--20{
     margin-left: -20px;
 }
+
 .bot-margin--20 {
     margin-bottom: 20px;
 }
@@ -50,3 +54,20 @@
     box-shadow: 0 0 0 .2rem rgba(23, 162, 184, .5)
 }
 
+.list-link, .list-link:hover{
+    color: black;
+}
+.directory-menu-links {
+    background-color: #e9eff7;
+}
+.directory-menu-links,.page-menu-links{
+    border-color:white;
+}
+.page-menu-links.active {
+    color: red;
+}
+.icon-main{
+    height: 130px;
+    width: 10.64%;
+    margin: 3px;
+}

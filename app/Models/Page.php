@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 /**
- * Запись в блоге, имеет одного(в т.з. не указано) автора и одну родительскую папку
+ * Запись в блоге, имеет (одного?? в т.з. не указано) автора и одну родительскую папку
  * Доступные статусы страницы: Создана, На проверке, Допущена, Заблокированна
  * Class Page
  * @package App\Models
@@ -35,6 +34,9 @@ class Page extends Model
     const TYPE_NEWS = 2;
     const TYPE_ANNOUNCE = 3;
 
+    /**
+     * @var string[]
+     */
     private $statusLabels = [
         self::STATUS_CREATED => 'info',
         self::STATUS_ON_REVIEW => 'warning',
@@ -42,14 +44,23 @@ class Page extends Model
         self::STATUS_BLOCKED => 'danger',
     ];
 
-    public $statusTitles = [
+    /**
+     * @var string[]
+     */
+    private $typeLabels = [
+        self::TYPE_PAGE => 'primary',
+        self::TYPE_NEWS => 'info',
+        self::TYPE_ANNOUNCE => 'success',
+    ];
+
+    private $statusTitles = [
         self::STATUS_CREATED => 'Created',
         self::STATUS_ON_REVIEW => 'On Review',
         self::STATUS_APPROVED => 'Approved',
         self::STATUS_BLOCKED => 'Blocked',
     ];
 
-    public $typeTitles = [
+    private $typeTitles = [
         self::TYPE_PAGE => 'Page',
         self::TYPE_NEWS => 'News',
         self::TYPE_ANNOUNCE => 'Announce',
@@ -67,17 +78,22 @@ class Page extends Model
 
     public function getStatusLabelAttribute()
     {
-        return $this->statusLabels[$this->status];
+        return $this->getStatusLabels()[$this->status];
     }
 
     public function getTypeTitleAttribute()
     {
-        return $this->typeTitles[$this->type];
+        return $this->getTypeTitles()[$this->type];
+    }
+
+    public function getTypeLabelAttribute()
+    {
+        return $this->getTypeLabels()[$this->type];
     }
 
     public function getStatusTitleAttribute()
     {
-        return $this->statusTitles[$this->status];
+        return $this->getStatusTitles()[$this->status];
     }
 
     public function author()
@@ -90,5 +106,46 @@ class Page extends Model
         return $this->belongsTo(Directory::class);
     }
 
+    /**
+     * @return string[]
+     */
+    public function getTypeTitles(): array
+    {
+        return $this->typeTitles;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getStatusTitles(): array
+    {
+        return $this->statusTitles;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getTypeLabels(): array
+    {
+        return $this->typeLabels;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getStatusLabels(): array
+    {
+        return $this->statusLabels;
+    }
+
+    public function scopeApproved(Builder $builder)
+    {
+        return $builder->where('status', '=', Page::STATUS_APPROVED);
+    }
+
+    public function scopeByDirectory(Builder $builder, $directoryId)
+    {
+        return $builder->where('directory_id', '=', $directoryId);
+    }
 
 }

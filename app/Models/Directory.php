@@ -56,4 +56,14 @@ class Directory extends Model
     {
         return $this->hasMany(self::class, 'parent_id');
     }
+
+    public function scopeVisible(Builder $builder)
+    {
+        return $builder->where('visible', '=', true);
+    }
+
+    public function scopeMainDirectories(Builder $builder)
+    {
+        return $builder->whereNull('parent_id');
+    }
 }

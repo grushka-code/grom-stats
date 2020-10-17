@@ -8,19 +8,30 @@ use Illuminate\Database\Eloquent\Builder;
 class DirectoryManager
 {
     /**
-     * @var
+     * @var Builder
      */
-    private $query;
+    private $directoryContainer;
 
-    public function __construct(Builder $query)
+    public function __construct(Directory $directory)
     {
-        $this->query = $query;
+        $this->directoryContainer = $directory;
+    }
+
+    public function getPageMenuWidget(Page $model)
+    {
+        $directories = $this->getMainDirectories();
+        return view('components.page-menu', [
+                'directories' => $directories, 'model' => $model,
+            ]
+        )->render();
     }
 
     public function getMainDirectories()
     {
-        return $this->query->whereNull('parent_id')
-            ->where('visible', '=', true)
-            ->pluck('title', 'id');
+        return $this->directoryContainer
+            ->visible()
+            ->mainDirectories()
+            ->with('pages')
+            ->get();
     }
 }

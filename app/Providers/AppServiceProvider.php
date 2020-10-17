@@ -29,10 +29,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind('DirectoryManager', function () {
-            return new DirectoryManager(Directory::query());
+            return new DirectoryManager(new Directory());
         });
         $this->app->bind('PageManager', function () {
-            return new PageManager(Page::query());
+            return new PageManager(new Page());
         });
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Page;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -43,9 +44,13 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/web.php'));
 
             Route::prefix('admin')
-                ->middleware(['web','auth'])
+                ->middleware(['web', 'auth'])
                 ->name('admin.')
                 ->group(base_path('routes/admin.php'));
+        });
+
+        Route::bind('page_slug', function ($value) {
+            return Page::query()->where('slug', '=', $value)->firstOrFail();
         });
     }
 
@@ -56,7 +61,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for ('api', function (Request $request) {
+        RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60);
         });
     }

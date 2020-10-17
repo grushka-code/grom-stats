@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DirectoryRequest;
 use App\Models\Directory;
+use Exception;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\View\View;
 
 class DirectoriesController extends Controller
@@ -16,17 +22,17 @@ class DirectoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return View
+     * @return Application|Factory|\Illuminate\Contracts\View\View|View
      */
     public function index()
     {
-        return view("{$this->viewsPath}.index", ['models' => Directory::paginate(10)]);
+        return view("{$this->viewsPath}.index", ['models' => Directory::paginate(25)]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return View
+     * @return Application|Factory|\Illuminate\Contracts\View\View|View
      */
     public function create()
     {
@@ -37,7 +43,7 @@ class DirectoriesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param DirectoryRequest $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
      */
     public function store(DirectoryRequest $request)
     {
@@ -52,7 +58,7 @@ class DirectoriesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param integer $id
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|\Illuminate\Contracts\View\View|Response
      */
     public function edit(Directory $directory)
     {
@@ -66,8 +72,8 @@ class DirectoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param DirectoryRequest $request
-     * @param  \App\Models\Directory $directory
-     * @return \Illuminate\Http\Response
+     * @param Directory $directory
+     * @return Response
      */
     public function update(DirectoryRequest $request, Directory $directory)
     {
@@ -81,9 +87,9 @@ class DirectoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Directory $directory
-     * @return \Illuminate\Http\Response
-     * @throws \Exception
+     * @param Directory $directory
+     * @return RedirectResponse|Response
+     * @throws Exception
      */
     public function destroy(Directory $directory)
     {

@@ -32,15 +32,17 @@
                     <div class="row">
                         <div class="col">
                             <a href="{{route('admin.users.edit',['user' => $model->id])}}">
-                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn btn-primary">Edit</button>
                             </a>
+                        </div>
+                        <div class="col">
                             <form method="post"
                                   action="{{route('admin.users.destroy',['user' => $model->id])}}">
 
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
-                                <button class="btn btn-sm btn-warning">Delete</button>
+                                <button class="btn btn btn-warning">Delete</button>
                             </form>
                         </div>
                     </div>

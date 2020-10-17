@@ -39,20 +39,20 @@
                 </td>
                 <td>
                     <div class="row">
-                        <div class="col-1">
+                        <div class="col">
                             <a href="{{route('admin.directories.edit',['directory' => $model->id])}}">
-                                <button class="btn btn-sm btn-primary">Edit</button>
+                                <button class="btn btn btn-primary">Edit</button>
                             </a>
                         </div>
                         @if($model->pages->isEmpty() && $model->childs->isEmpty())
-                        <div class="col-1">
+                        <div class="col">
                             <form method="post"
                                   action="{{route('admin.directories.destroy',['directory' => $model->id])}}">
 
                                 {{ csrf_field() }}
                                 {{ method_field('DELETE') }}
 
-                                <button class="btn btn-sm btn-warning">Delete</button>
+                                <button class="btn btn btn-warning">Delete</button>
                             </form>
                         </div>
                         @endif
